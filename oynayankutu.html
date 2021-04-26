@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #kutu {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="kutu"></div>
+
+    <script>
+        // max top 639px min top 0px
+        // max left 1450px min left 0p
+        box = document.getElementById("kutu");
+        box.style.top = "60px";
+        box.style.left = "150px";
+        console.log(window.innerWidth);
+        var yuksek = 0;
+        var sol = 0;
+        yukariya = false;
+        sola = false
+            setInterval(function() {
+            if(yukariya && sola){
+                if(yuksek > 0 && sol > 0){
+                    yuksek--;
+                    sol--;
+                    box.style.top = yuksek + "px";
+                    box.style.left = sol + "px";
+                }
+                else if(yuksek == 0 && sol == 0){
+                    yukariya = false;
+                    sola = false;
+                }
+                else if (yuksek == 0){
+                    sola = true;
+                    yukariya = false;
+                }
+                else if (sol == 0){
+                    sola = false;
+                    yukariya = true;
+                }
+            }
+
+            if(yukariya && !sola){
+                if(yuksek > 0 && sol < 1450){
+                    yuksek--;
+                    sol++;
+                    box.style.top = yuksek + "px";
+                    box.style.left = sol + "px"; 
+                }
+                else if (yuksek == 0 && sol == 1450){
+                    yukariya = false;
+                    sola = true;
+                }
+                else if (yuksek == 0){
+                    yukariya = false;
+                    sola = false;
+                }
+                else if( sol == 1450){
+                    yukariya = true;
+                    sola = true;
+                }
+            }
+
+            if(!yukariya && !sola){
+                if(yuksek < 639 && sol < 1450){
+                    yuksek++;
+                    sol++;
+                    box.style.top = yuksek + "px";
+                    box.style.left = sol + "px";
+                }
+                else if (yuksek == 639 && sol == 1450){
+                    yukariya = true;
+                    sola = true;
+                }
+                else if(yuksek == 639){
+                    yukariya = true;
+                    sola = false;
+                }
+                else if(sol == 1450){
+                    yukariya = false;
+                    sola = true;
+                }
+            }
+
+            if(!yukariya && sola){
+                if(yuksek < 639 && sol > 0){
+                    yuksek++;
+                    sol--;
+                    box.style.top = yuksek + "px";
+                    box.style.left = sol + "px"; 
+                }
+                else if (yuksek == 639 && sol == 0){
+                    yukariya = true;
+                    sola = false;
+                }
+                else if(yuksek == 639){
+                    yukariya = true;
+                    sola = true;
+                }
+                else if (sol == 0){
+                    yukariya = false;
+                    sola = false;
+                    console.log("selam");
+                }
+            }
+                
+               console.log(yuksek + " " + sol);
+        }, 1); 
+    </script>
+    
+</body>
+</html>
